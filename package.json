@@ -13,7 +13,7 @@
     "mocha": "~1.4.1"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --compilers coffee:coffee-script"
   },
   "repository": {
     "type": "git",
