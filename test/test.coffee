@@ -5,6 +5,7 @@ lambdaComparisons = require "./helpers/lambda"
 chai.use lambdaComparisons
 chai.should()
 
+
 describe "boolean operators", ()->
 
   describe "and", ()->
@@ -41,17 +42,38 @@ describe "pairs", ()->
       snd(pair(tru)(fls)).should.logically.give fls
       snd(pair(tru)(fls)).should.not.logically.give tru
 
+
 describe "numbers", ()->
 
-  describe "one", ()->
-    it "should equal itself", ()->
+  describe "one", ()-> it "should equal itself", ()->
       one.should.give one
-    it "should equal the successor of zero", ()->
-      (succ zero).should.give one
 
   describe "four", ()->
-    it "should equal the successor of the successor of two", ()->
+    it "should equal itself", ()->
+      four.should.give 4
+
+  describe "succ", ()->
+    it "should give one as the successor to zero", ()->
+      (succ zero).should.give one
+    it "should give four as the successor of the successor of two", ()->
       succ(succ two).should.give four
+    it "should give 11 as the successor ten", ()->
+      (succ ten).should.give 11
+
+  describe "pred", ()->
+    it "should give three as the predecessor of four", ()->
+      pred(four).should.give three
+    it "should give zero as the predecessor of zero", ()->
+      pred(zero).should.give zero
+
+  describe "iszero", ()->
+    it "correctly distinguishes zero", ()->
+      iszero(zero).should.logically.give tru
+    it "correctly distinguishes one", ()->
+      iszero(one).should.logically.give fls
+    it "correctly distinguishes ten", ()->
+      iszero(ten).should.logically.give fls
+
 
 describe "numeric operators", ()->
 
@@ -72,14 +94,13 @@ describe "numeric operators", ()->
   describe "pow", ()->
     it "should square three and give nine", ()->
       pow(three)(two).should.give nine
-    it "raising five to the power of seven should give 78125", ()->
+    it "raises five to the power of seven and gives 78125", ()->
       pow(five)(seven).should.give 78125
 
-describe "iszero", ()->
-  it "correctly distinguishes zero", ()->
-    iszero(zero).should.logically.give tru
-  it "correctly distinguishes one", ()->
-    iszero(one).should.logically.give fls
-  it "correctly distinguishes ten", ()->
-    iszero(ten).should.logically.give fls
+  describe "minus", ()->
+    it "should subtract two from five and get three", ()->
+      minus(five)(two).should.give three
+    it "should subtract seven from nine and get 2", ()->
+      minus(nine)(seven).should.give 2
+
 

@@ -7,9 +7,11 @@ module.exports =
   andl:   (b)-> (c)-> b(c)(b)
   notl:   (b)-> b(fls)(tru)
 
+
   pair:   (x)-> (y)-> (b)-> b(x)(y)
   fst:    (p)-> p(tru)
   snd:    (p)-> p(fls)
+
 
   zero:   (s)-> (z)-> z
   one:    (s)-> (z)-> s(z)
@@ -25,6 +27,14 @@ module.exports =
 
   succ:   (n)-> (s)-> (z)-> s(n(s)(z))
 
+  pred:   (n)->
+            zero_pair = pair(zero)(zero)
+            pair_inc = (p)-> pair(snd(p))(succ(snd(p)))
+            fst(n(pair_inc)(zero_pair))
+
+  iszero: (n)-> n((x)->fls)(tru)
+
+
   plus:   (m)-> (n)-> (s)-> (z)-> m(s)(n(s)(z))
   # plus:    (x)-> (y)-> (s)-> (z)-> x(succ)(y)(s)(z) # this also seems to work...
 
@@ -33,4 +43,4 @@ module.exports =
 
   pow:    (m)-> (n)-> (s)-> (z)-> n(m)(s)(z)
 
-  iszero: (n)-> n((x)->fls)(tru)
+  minus:  (m)-> (n)-> n(pred)(m)
