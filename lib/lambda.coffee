@@ -3,9 +3,11 @@ module.exports =
   tru:    (b)-> (c)-> b
   fls:    (b)-> (c)-> c
 
+  notl:   (b)-> b(fls)(tru)
   orl:    (b)-> (c)-> b(b)(c)
   andl:   (b)-> (c)-> b(c)(b)
-  notl:   (b)-> b(fls)(tru)
+  xorl:   (b)-> (c)-> orl(andl(b)(notl(c)))(andl(notl(b))(c))
+  xnorl:  (b)-> (c)-> notl(xorl(b)(c))
 
 
   pair:   (x)-> (y)-> (b)-> b(x)(y)

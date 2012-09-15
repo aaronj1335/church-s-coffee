@@ -8,6 +8,12 @@ chai.should()
 
 describe "boolean operators", ()->
 
+  describe "not", ()->
+    it "should return false correctly", ()->
+      notl(tru).should.logically.give fls
+    it "should return true correctly", ()->
+      notl(fls).should.logically.give tru
+
   describe "and", ()->
     it "should return true correctly", ()->
       andl(tru)(tru).should.logically.give tru
@@ -24,11 +30,22 @@ describe "boolean operators", ()->
     it "should return false correctly", ()->
       orl(fls)(fls).should.logically.give fls
 
-  describe "not", ()->
-    it "should return false correctly", ()->
-      notl(tru).should.logically.give fls
+  describe "xor", ()->
     it "should return true correctly", ()->
-      notl(fls).should.logically.give tru
+      xorl(tru)(fls).should.logically.give tru
+      xorl(fls)(tru).should.logically.give tru
+    it "should return false correctly", ()->
+      xorl(tru)(tru).should.logically.give fls
+      xorl(fls)(fls).should.logically.give fls
+
+  describe "xnor", ()->
+    it "should return true correctly", ()->
+      xnorl(tru)(tru).should.logically.give tru
+      xnorl(fls)(fls).should.logically.give tru
+    it "should return false correctly", ()->
+      xnorl(tru)(fls).should.logically.give fls
+      xnorl(fls)(tru).should.logically.give fls
+
 
 describe "pairs", ()->
 
