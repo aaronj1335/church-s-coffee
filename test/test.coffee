@@ -8,6 +8,12 @@ chai.should()
 
 describe "boolean operators", ()->
 
+  describe "test", ()->
+    it "should select the first value when passed tru", ()->
+      test(tru)(tru)(fls).should.logically.give tru
+    it "should select the second value when passed fls", ()->
+      test(fls)(tru)(fls).should.logically.give fls
+
   describe "not", ()->
     it "should return false correctly", ()->
       notl(tru).should.logically.give fls
@@ -90,6 +96,18 @@ describe "numbers", ()->
       iszero(one).should.logically.give fls
     it "correctly distinguishes ten", ()->
       iszero(ten).should.logically.give fls
+
+  describe "equal", ()->
+    it "indicates that three and three are equal", ()->
+      equal(three)(three).should.logically.give tru
+    it "indicates that three and seven are not equal", ()->
+      equal(three)(seven).should.logically.give fls
+    it "indicates that zero and seven are not equal", ()->
+      equal(zero)(seven).should.logically.give fls
+    it "indicates that seven and zero are not equal", ()->
+      equal(seven)(zero).should.logically.give fls
+    it "indicates that zero and zero are equal", ()->
+      equal(zero)(zero).should.logically.give tru
 
 
 describe "numeric operators", ()->

@@ -2,9 +2,7 @@
 
 var coffee = require('coffee-script'),
     lambdaCalculus = require('./../../lib/lambda.coffee'),
-    isNumber = function(a) {
-        return Object.prototype.toString.call(a) === '[object Number]';
-    };
+    helpers = require('./../../lib/helpers.coffee');
 
 module.exports = function(chai, utils) {
   var Assertion = chai.Assertion;
@@ -36,8 +34,8 @@ module.exports = function(chai, utils) {
 
     } else {
 
-      actual = this._obj(inc)(0);
-      expected = isNumber(other)? other : other(inc)(0);
+      actual = helpers.toNum(this._obj);
+      expected = helpers.toNum(other);
 
       this.assert(
         expected === actual,

@@ -2,6 +2,7 @@ module.exports =
 
   tru:    (b)-> (c)-> b
   fls:    (b)-> (c)-> c
+  test:   (b)-> (x)-> (y)-> b(x)(y)
 
   notl:   (b)-> b(fls)(tru)
   orl:    (b)-> (c)-> b(b)(c)
@@ -35,6 +36,34 @@ module.exports =
             fst(n(pair_inc)(zero_pair))
 
   iszero: (n)-> n((x)->fls)(tru)
+
+  # equal:  (m)-> (n)->
+  #   # this defines an iteration function that is applied m+1 times. at each
+  #   # iteration it checks a validity condition, and then returns the two values
+  #   # decremented.
+  #   #
+  #   # the validity condition is an xnor of the two values iszero'ed, since, if
+  #   # at any point one value equals zero and the other doesn't, we know that
+  #   # they are not equal
+  #   valid = (p)-> (v)-> andl(v)(xnorl(iszero(fst(p)))(iszero(snd(p))))
+
+  #   iteration = (t)->
+  #     p = fst(t)
+  #     preds = pair(pred(fst(p)))(pred(snd(p)))
+  #     v = snd(t)
+  #     test(iszero(fst(p)))(
+  #       valid(p)(v)
+  #     )(
+  #       pair(preds)(valid(p)(v))
+  #     )
+
+  #   succ(m)(iteration)(pair(pair(m)(n))(tru))
+
+  equal: (m)-> (n)->
+    # HASHTAG FACEPALM -- this is a much simpler implementation...
+    andl(
+      iszero(m(pred)(n)))(
+      iszero(n(pred)(m)))
 
 
   plus:   (m)-> (n)-> (s)-> (z)-> m(s)(n(s)(z))
