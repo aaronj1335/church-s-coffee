@@ -138,4 +138,61 @@ describe "numeric operators", ()->
     it "should subtract seven from nine and get 2", ()->
       minus(nine)(seven).should.give 2
 
+  describe "fact", ()->
+    it "should give one for one factorial", ()->
+      fact(one).should.give one
+    it "should give two for two factorial", ()->
+      fact(two).should.give two
+    it "should give six for three factorial", ()->
+      fact(three).should.give six
+    it "should give 12 for four factorial", ()->
+      fact(four).should.give 24
+    it "should give 120 for five factorial", ()->
+      fact(five).should.give 120
 
+
+describe "lists", ()->
+
+  describe "cons", ()->
+    it "creates a list of four", ()->
+      cons(four)(nil).should.as_a_list.give [4]
+    it "creates a list of three, five, and seven", ()->
+      cons(three)(cons(five)(cons(seven)(nil))).should.as_a_list.give [3, 5, 7]
+
+  describe "isnil", ()->
+    it "correctly detects nil", ()->
+      isnil(nil).should.logically.give tru
+    it "correctly detects non-empty list", ()->
+      isnil(cons(six)(nil)).should.logically.give fls
+
+  describe "head", ()->
+    it "gives the first element of the list", ()->
+      head(cons(four)(nil)).should.give four
+    it "gives the first element of a list with multiple items", ()->
+      head(cons(three)(cons(five)(cons(seven)(nil)))).should.give three
+    it "equals nil for an empty list", ()->
+      head(nil).should.equal nil
+
+  describe "tail", ()->
+    it "gives the last element of the list", ()->
+      tail(cons(four)(nil)).should.give four
+    it "gives the last element of a list with multiple items", ()->
+      tail(cons(three)(cons(five)(cons(seven)(nil)))).should.give seven
+    it "equals nil for an empty list", ()->
+      head(nil).should.equal nil
+
+
+# i get 'max stack size exceeded' exceptions when i try this stuff...
+# describe "crazy fixed point noise", ()->
+
+#   describe "factorial", ()->
+#     it "should give one for one factorial", ()->
+#       factorial(one).should.give one
+#     it "should give two for two factorial", ()->
+#       factorial(two).should.give two
+#     it "should give six for three factorial", ()->
+#       factorial(three).should.give six
+#     it "should give 12 for four factorial", ()->
+#       factorial(four).should.give 24
+#     it "should give 120 for five factorial", ()->
+#       factorial(five).should.give 120

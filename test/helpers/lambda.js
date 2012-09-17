@@ -16,7 +16,7 @@ module.exports = function(chai, utils) {
   });
 
   Assertion.addMethod('give', function(other) {
-    var repr, expected, actual, inc = function(i) { return i+1; };
+    var repr, expected, actual,  list;
 
     repr = this._obj.toString().replace(/\s+/g, ' ');
 
@@ -32,6 +32,24 @@ module.exports = function(chai, utils) {
         actual
       );
 
+    } else if ((list = utils.flag(this, 'listified'))) {
+
+        var equal = list.length === other.length;
+
+        for (var i = 0; i < list.length; i++) {
+            if (list[i] !== other[i]) {
+                equal = false;
+            }
+        }
+
+        this.assert(
+            equal,
+            'expected #{exp} but got #{act} from #{this}',
+            'expected #{exp} to be #{act}',
+            other,
+            list
+        );
+
     } else {
 
       actual = helpers.toNum(this._obj);
@@ -46,5 +64,15 @@ module.exports = function(chai, utils) {
       );
 
     }
+  });
+
+  Assertion.addProperty('as_a_list', function() {
+      utils.flag(this, 'listified', this._obj(
+          function(item) {
+              return function(memo) {
+                  memo.unshift(helpers.toNum(item));
+                  return memo;
+              };
+          })([]));
   });
 };
