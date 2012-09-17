@@ -100,8 +100,8 @@ module.exports =
                     nil))
 
 
-  fix:        (f)-> ((x)-> f((y)-> x(x)(y)))((x)-> f((y)-> x(x)(y)))
+  # fix:        (f)-> ((x)-> f((y)-> x(x)(y)))((x)-> f((y)-> x(x)(y)))
 
-  factg:      (fct)-> (n)-> test(iszero(n))(one)(times(n)(fct(pred(n))))
+  # factg:      (fct)-> (n)-> test(iszero(n))(one)(times(n)(fct(pred(n))))
 
-  factorial:  fix(factg)
+  # factorial:  fix(factg)
