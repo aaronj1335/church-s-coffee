@@ -1,5 +1,3 @@
-hlp = require "./helpers.coffee"
-
 module.exports =
 
   tru:        (b)-> (c)-> b
