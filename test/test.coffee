@@ -182,17 +182,16 @@ describe "lists", ()->
       head(nil).should.equal nil
 
 
-# i get 'max stack size exceeded' exceptions when i try this stuff...
-# describe "crazy fixed point noise", ()->
+describe "crazy fixed point noise", ()->
 
-#   describe "factorial", ()->
-#     it "should give one for one factorial", ()->
-#       factorial(one).should.give one
-#     it "should give two for two factorial", ()->
-#       factorial(two).should.give two
-#     it "should give six for three factorial", ()->
-#       factorial(three).should.give six
-#     it "should give 12 for four factorial", ()->
-#       factorial(four).should.give 24
-#     it "should give 120 for five factorial", ()->
-#       factorial(five).should.give 120
+  describe "factorial", ()->
+    it "should give one for one factorial", ()->
+      factorial(one).should.give one
+    it "should give two for two factorial", ()->
+      factorial(two).should.give two
+    it "should give six for three factorial", ()->
+      factorial(three).should.give six
+    it "should give 12 for four factorial", ()->
+      factorial(four).should.give 24
+    it "should give 120 for five factorial", ()->
+      factorial(five).should.give 120

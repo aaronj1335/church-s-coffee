@@ -1,4 +1,7 @@
-module.exports =
+require "coffee-script"
+helpers = require "./helpers.coffee"
+
+module.exports = helpers.prep
 
   tru:        (b)-> (c)-> b
   fls:        (b)-> (c)-> c
@@ -98,8 +101,9 @@ module.exports =
                     nil))
 
 
-  # fix:        (f)-> ((x)-> f((y)-> x(x)(y)))((x)-> f((y)-> x(x)(y)))
+  fix:        (f)-> ((x)-> f((y)-> x(x)(y)))((x)-> f((y)-> x(x)(y)))
 
-  # factg:      (fct)-> (n)-> test(iszero(n))(one)(times(n)(fct(pred(n))))
-
-  # factorial:  fix(factg)
+  factorialG: (fct)-> (n)->
+                iszero(n)(
+                  ()-> one)(
+                  ()-> times(n)(fct(pred(n))))()
