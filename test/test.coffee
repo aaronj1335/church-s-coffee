@@ -195,3 +195,18 @@ describe "crazy fixed point noise", ()->
       factorial(four).should.give 24
     it "should give 120 for five factorial", ()->
       factorial(five).should.give 120
+
+  describe "fibonacci", ()->
+    it "should give zero for fibonacci zero", ()->
+      fibonacci(zero).should.give zero
+    it "should give one for fibonacci one", ()->
+      fibonacci(one).should.give one
+    it "should give one for fibonacci two", ()->
+      fibonacci(two).should.give one
+    it "should give two for fibonacci three", ()->
+      fibonacci(three).should.give two
+    it "should give three for fibonacci four", ()->
+      fibonacci(four).should.give three
+    it "should give five for fibonacci five", ()->
+      fibonacci(five).should.give five
+

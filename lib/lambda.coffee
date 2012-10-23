@@ -107,3 +107,11 @@ module.exports = helpers.prep
                 iszero(n)(
                   ()-> one)(
                   ()-> times(n)(fct(pred(n))))()
+
+  fibonacciG: (fibo)-> (n)->
+                iszero(n)(
+                  ()-> zero)(
+                  iszero(pred(n))(
+                    ()-> one)(
+                    ()-> plus(fibo(minus(n)(two)))(fibo(minus(n)(one)))))()
+
